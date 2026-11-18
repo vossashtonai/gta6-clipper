@@ -72,6 +72,9 @@ Remind the user: watch every clip before posting, and only clip streamers who ar
   (times or hook), delete the old mp4, re-run render (it re-picks deterministically, so the same top
   picks come back with the change).
 - "Give me 5 clips": `render <run> --top 5`.
+- Check one frame per clip after render. If the top panel shows the wrong face (the stream switches between
+  full-screen layouts mid-clip, or a face on screen gets mistaken for the facecam), add `"layout": "gameplay"`
+  (or `"cam"`) to that pick in `picks/*.json`, delete its mp4 and re-run render.
 - Disk: prep deletes the audio after transcribing and render deletes downloaded sections (`--keep` keeps
   them). Runs live in `~/GTA6-Clips/` (or `$GTA6_CLIPS_DIR`); delete finished ones only if the user says so.
 

@@ -596,6 +596,11 @@ def render_one(rd, info, c, n, cookies, keep, local_src=None, src_start=None):
     dur = min(c["_e"] - c["_s"], sdur - ss)
 
     fc = find_facecam(src, W, H)
+    forced = c.get("layout")  # per-pick override when the detector gets it wrong (scene switches mid-clip)
+    if forced == "gameplay" or (forced == "cam" and "face" not in fc):
+        fc = {"mode": "gameplay"}
+    elif forced == "cam":
+        fc = {"mode": "cam", "face": fc["face"]}
     words = clip_words(src, ss, dur, work)
     if fc["mode"] == "facecam":
         L, T, cw, ch = fc["box"]
